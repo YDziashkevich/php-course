@@ -1,7 +1,7 @@
 #!/usr/bin/php5
 <?php
-$output = `clear`;
-echo $output;
+error_reporting(E_ERROR);
+echo `clear`;
 date_default_timezone_set('UTC');
 $weekDays = array(1 => 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс');
 $months = array(1 => 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь');
@@ -24,9 +24,9 @@ $numDay = 1;
 if((int)$firstDayOfMonth != 1){
     for($i = (int)$firstDayOfMonth; $i <= 7; $i++){
         if($numDay == (int)$currentDay){
-            echo "\033[30;47m0$numDay\033[0m" . ' ';
+            echo "\033[30;47m $numDay\033[0m" . ' ';
         }else{
-            echo '0' . $numDay . ' ';
+            echo ' ' . $numDay . ' ';
         }
         ++$numDay;
     }
@@ -36,9 +36,9 @@ $j = 0;
 for($i = $numDay; $i <= $numberDaysInMonth; $i++){
     if($i < 10){
         if($i == (int)$currentDay){
-            echo "\033[30;47m0$i\033[0m" . ' ';
+            echo "\033[30;47m $i\033[0m" . ' ';
         }else{
-            echo '0' . $i . ' ';
+            echo ' ' . $i . ' ';
         }
 
     }else{
