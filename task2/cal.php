@@ -18,7 +18,7 @@ foreach ($weekDays as $day){
 }
 echo "\n";
 for($i = 1; $i < (int)$firstDayOfMonth; $i++){
-    echo '--' , ' ';
+    echo '  ' , ' ';
 }
 $numDay = 1;
 if((int)$firstDayOfMonth != 1){
@@ -56,8 +56,8 @@ for($i = $numDay; $i <= $numberDaysInMonth; $i++){
 }
 if($j != 0){
     for($i = $j; $i <= 7; $i++){
-        echo '--' , ' ';
+        echo '  ' , ' ';
     }
 }
 echo "\n";
-var_dump($currentDay);
+//var_dump($currentDay);
