@@ -10,16 +10,19 @@ $currentDay = date("j");
 $numberDaysInMonth = cal_days_in_month(CAL_GREGORIAN, $currentMonth, $currentYear);
 $firstDayOfMonth = date("N", mktime(0, 0, 0, $currentMonth, 1, $currentYear));
 $lastDayOfMonth = date("N", mktime(0, 0, 0, $currentMonth, $numberDaysInMonth, $currentYear));
-echo "\033[8;27H";
+$indent = 8;
+echo "\033[$indent;27H";
 // месяц, год
 echo '        ' . $months[$currentMonth] . ' ' . $currentYear;
 echo "\n";
-echo "\033[9;27H";
+++$indent;
+echo "\033[$indent;27H";
 for($i = 1; $i <= 24; $i++){
 	echo '-';
 }
 echo "\n";
-echo "\033[10;27H";
+++$indent;
+echo "\033[$indent;27H";
 //дни недели
 echo '| ';
 foreach ($weekDays as $day){
@@ -27,13 +30,15 @@ foreach ($weekDays as $day){
 }
 echo '|';
 echo "\n";
-echo "\033[11;27H";
+++$indent;
+echo "\033[$indent;27H";
 // первая неделя месяца
 for($i = 1; $i <= 24; $i++){
 	echo '-';
 }
 echo "\n";
-echo "\033[12;27H";
+++$indent;
+echo "\033[$indent;27H";
 echo '| ';
 for($i = 1; $i < (int)$firstDayOfMonth; $i++){
     echo '  ' , ' ';
@@ -53,9 +58,10 @@ if((int)$firstDayOfMonth != 1){
 }
 //оставшиеся дни месяца
 $j = 0;
-echo "\033[13;27H";
+++$indent;
+echo "\033[$indent;27H";
 echo '| ';
-$indent = 14;
+++$indent;
 for($i = $numDay; $i <= $numberDaysInMonth; $i++){
     if($i < 10){
         if($i == (int)$currentDay){
