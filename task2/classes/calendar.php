@@ -73,6 +73,8 @@ class Calendar
         /*for($i = 1; $i <= 3; $i++){
             $navigation .= "\n";
         }*/
+        $navigation .= '|      esc - выход     |';
+        $navigation .= $this->delimiter();
         return $navigation;
     }
 
