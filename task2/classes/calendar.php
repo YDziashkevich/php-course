@@ -4,12 +4,12 @@ class Calendar
     private $month;
     private $year;
     private $day;
-    private $weekDays ='Пн Вт Ср Чт Пт Сб Вс';
-    private $months = array(1 => 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь');
+    protected $weekDays ='Пн Вт Ср Чт Пт Сб Вс';
+    protected $months = array(1 => 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь');
     private $currentMonth;
     private $currentYear;
     private $currentDay;
-    private $border = '|';
+    protected $border = '|';
 
     public function __construct()
     {
@@ -62,17 +62,17 @@ class Calendar
 
     private function getNavigation()
     {
-        $navigation = "\n";
+        $navigation = '';//"\n";
         $navigation .= '| влево -М / +М вправо |';
-        $navigation .= "\n";
+        //$navigation .= "\n";
         $navigation .= $this->delimiter();
-        $navigation .= "\n";
+        //$navigation .= "\n";
         $navigation .= '| вверх -Г  /  +Г вниз |';
-        $navigation .= "\n";
+        //$navigation .= "\n";
         $navigation .= $this->delimiter();
-        for($i = 1; $i <= 3; $i++){
+        /*for($i = 1; $i <= 3; $i++){
             $navigation .= "\n";
-        }
+        }*/
         return $navigation;
     }
 
@@ -80,9 +80,9 @@ class Calendar
     {
         $calendar = '';
         $calendar = $calendar . '        ' . $this->months[$this->month] . ' ' . $this->year . "\n";
-        $calendar = $calendar . $this->delimiter(). "\n";
-        $calendar = $calendar . $this->border . ' ' . $this->weekDays . ' ' . $this->border . "\n";
-        $calendar = $calendar . $this->delimiter(). "\n";
+        $calendar = $calendar . $this->delimiter()/*. "\n"*/;
+        $calendar = $calendar . $this->border . ' ' . $this->weekDays . ' ' . $this->border /*. "\n"*/;
+        $calendar = $calendar . $this->delimiter()/*. "\n"*/;
         $calendar = $calendar . $this->border . ' ';
         $dataMonth = $this->dataMonth();
         for($i = 1; $i < $dataMonth['firstDay']; $i++){
@@ -91,34 +91,38 @@ class Calendar
         $numDay = 1;
         if($dataMonth['firstDay'] != 1){
             for($i = $dataMonth['firstDay']; $i <= 7; $i++){
+                /*
                 if($numDay == $this->currentDay &&  $this->currentMonth == $this ->month && $this->currentYear == $this->year){
                     $calendar = $calendar . "\033[30;47m $numDay\033[0m" . ' ';
                 }else{
                     $calendar = $calendar . ' ' . $numDay . ' ';
-                }
+                }*/
+                $calendar = $calendar . ' ' . $numDay . ' ';/////
                 ++$numDay;
             }
-            $calendar = $calendar . $this->border . "\n";
+            $calendar = $calendar . $this->border /*. "\n"*/;
         }
         $calendar = $calendar . $this->border . ' ';
         $j = 0;
         for($i = $numDay; $i <= $dataMonth['numberDays']; $i++){
             if($i < 10){
+                /*
                 if($i == $this->currentDay &&  $this->currentMonth == $this ->month && $this->currentYear == $this->year){
                     $calendar = $calendar . "\033[30;47m $i\033[0m" . ' ';
                 }else{
                     $calendar = $calendar . ' ' . $i . ' ';
-                }
-            }else{
+                }*/$calendar = $calendar . ' ' . $i . ' ';
+            }else{/*
                 if($i == $this->currentDay &&  $this->currentMonth == $this ->month && $this->currentYear == $this->year){
                     $calendar = $calendar . "\033[30;47m$i\033[0m" . ' ';
                 }else{
                     $calendar = $calendar . $i . ' ';
-                }
+                }*/
+                $calendar = $calendar . $i . ' ';
             }
             ++$j;
             if($j == 7){
-                $calendar = $calendar . $this->border . "\n";
+                $calendar = $calendar . $this->border /*. "\n"*/;
                 if($i != $dataMonth['numberDays']){
                     $calendar = $calendar . $this->border . ' ';
                 }
