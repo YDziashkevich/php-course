@@ -6,6 +6,8 @@ require_once 'autoloader.php';
 
 $calendar = new Calendar();
 $ncurse = ncurses_init();
+ncurses_clear();
+ncurses_curs_set(0);
 $fullscreen = ncurses_newwin(0, 0, 0, 0);
 ncurses_getmaxyx($fullscreen, $rows, $cols);
 $small = ncurses_newwin(17, 24, ($rows/2 - (int)17/2), ($cols/2 - 24/2));
