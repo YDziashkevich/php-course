@@ -14,28 +14,36 @@ ncurses_refresh();
 ncurses_mvwaddstr($small, 0, 0, $caledar->getCalendar());
 ncurses_wrefresh($small);
 ncurses_curs_set(0);
-ncurses_noecho();
+//ncurses_noecho();
 $y = ncurses_getch($small);
 while($y != 27){
     switch($y){
-        case 'a':
+        case NCURSES_KEY_LEFT:
             $caledar->prevMonth();
             ncurses_mvwaddstr($small, 0, 0, $caledar->getCalendar());
             ncurses_wrefresh($small);
             break;
-        case 'd':
+        case NCURSES_KEY_RIGHT:
             $caledar->nextMonth();
+            ncurses_mvwaddstr($small, 0, 0, $caledar->getCalendar());
+            ncurses_wrefresh($small);
             break;
-        case 's':
+        case NCURSES_KEY_DOWN:
             $caledar->prevYear;
+            ncurses_mvwaddstr($small, 0, 0, $caledar->getCalendar());
+            ncurses_wrefresh($small);
             break;
-        case 'w':
+        case NCURSES_KEY_UP:
             $caledar->nextYear;
+            ncurses_mvwaddstr($small, 0, 0, $caledar->getCalendar());
+            ncurses_wrefresh($small);
             break;
             //ncurses_mvwaddstr($small, 0, 0, $caledar->getCalendar());
             //ncurses_wrefresh($small);
         var_dump($y);
     }
+    $y = ncurses_getch($small);
+
 }
 ncurses_end();
 //echo $caledar->getCalendar();
