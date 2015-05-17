@@ -10,7 +10,6 @@ class Calendar
     private $currentYear;
     private $currentDay;
     protected $border = '|';
-    private $pic;
 
     public function __construct()
     {
@@ -20,11 +19,6 @@ class Calendar
         $this->currentYear = $this->year;
         $this->day = (int)date("j");
         $this->currentDay = $this->day;
-    }
-
-    public function setPic($pic)
-    {
-        $this->pic = $pic;
     }
 
     private function dataMonth()
@@ -62,7 +56,7 @@ class Calendar
     private function delimiter()
     {
         $delimiter = '';
-        for($i = 1; $i <= 24; $i++){
+        for($i = 1; $i <= WIDTH_CAL; $i++){
             $delimiter .= '-';
         }
         return $delimiter;
@@ -83,10 +77,10 @@ class Calendar
     protected function getMonthYear()
     {
         $monthYear = $this->months[$this->month] . ' ' . $this->year;
-        $lengthString = strlen(' ' . $this->year) + strlen($this->months[$this->month]) / 2;
-        $start = (24 - $lengthString) / 2;
+        $lengthString = (int)mb_strlen(' ' . $this->year) + strlen($this->months[$this->month]) / 2;///////?
+        $start = (WIDTH_CAL - $lengthString) / 2;
         $header = '';
-        for($i = 1; $i <= (int)$start; $i ++){
+        for($i = 1; $i <= $start; $i ++){
             $header = $header . ' ';
         }
         $header .= $monthYear;
